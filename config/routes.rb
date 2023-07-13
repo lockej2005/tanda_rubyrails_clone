@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
   end
   
+  post '/sendlogin', to: 'sessions#create'
 
   get '/signup', to: 'users#new', as: :signup
   get '/login', to: 'sessions#new', as: :login
