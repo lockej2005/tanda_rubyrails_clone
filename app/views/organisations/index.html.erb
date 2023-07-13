@@ -1,6 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Organisations</h1>
+<% @organisations.each do |organisation| %>
+  <p>
+    <%= organisation.name %>
+    <%= button_to 'Join', join_organisation_path(organisation), method: :put %>
+  </p>
+<% end %>
 
 <div id="organisations">
   <% @organisations.each do |organisation| %>

@@ -1,4 +1,4 @@
 class Organisation < ApplicationRecord
-    has_many :users
-    has_many :shifts, through: :users
-end
+    has_and_belongs_to_many :users
+  end
+  

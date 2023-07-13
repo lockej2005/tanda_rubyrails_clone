@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  resources :shifts
-  resources :users
-  resources :organisations
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'organisations#index'  # Set the root route to the organisations index page
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :users, only: [:create]
+  resources :sessions, only: [:create, :destroy]
+  resources :organisations do
+    member do
+      put 'join'
+    end
+  end
+  
+
+  get '/signup', to: 'users#new', as: :signup
+  get '/login', to: 'sessions#new', as: :login
+  get '/logout', to: 'sessions#destroy', as: :logout
 end

@@ -1,9 +1,9 @@
 class OrganisationsController < ApplicationController
-  before_action :set_organisation, only: %i[ show edit update destroy ]
+  before_action :set_organisation, only: %i[ show edit update destroy join ]
 
   # GET /organisations or /organisations.json
   def index
-    @organisations = Organisation.all
+    @organisations = Organisation.all # changed from current_user.organisations to Organisation.all to display all organisations.
   end
 
   # GET /organisations/1 or /organisations/1.json
@@ -50,11 +50,16 @@ class OrganisationsController < ApplicationController
   # DELETE /organisations/1 or /organisations/1.json
   def destroy
     @organisation.destroy
-
     respond_to do |format|
       format.html { redirect_to organisations_url, notice: "Organisation was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  # PUT /organisations/1/join
+  def join
+    current_user.update(organisation_id: @organisation.id)
+    redirect_to organisations_path, notice: 'You have joined the organisation.'
   end
 
   private
