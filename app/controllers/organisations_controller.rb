@@ -3,13 +3,13 @@ class OrganisationsController < ApplicationController
 
   # GET /organisations or /organisations.json
   def index
-    @organisations = Organisation.all # changed from current_user.organisations to Organisation.all to display all organisations.
+    @organisations = current_user.organisations
   end
 
   # GET /organisations/1 or /organisations/1.json
   def show
   end
-
+  
   # GET /organisations/new
   def new
     @organisation = Organisation.new
