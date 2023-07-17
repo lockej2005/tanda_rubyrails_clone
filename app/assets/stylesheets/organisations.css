@@ -1,0 +1,17 @@
+.welcomeUser{
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.orgRows{
+    display: flex;
+    align-items: center; /* Added this line to align items vertically in the center */
+}
+
+.joinBtn {
+    margin-left: 10px;
+}

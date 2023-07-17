@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  root 'organisations#index'  # Set the root route to the organisations index page
+  root 'sessions#new'  # Set the root route to the organisations index page
 
   resources :users, only: [:create]
   resources :sessions, only: [:create, :destroy]
-  resources :organisations do
+  
+  resources :organisations, except: [:new] do
     member do
-      put 'join'
+      post 'join'
     end
   end
   

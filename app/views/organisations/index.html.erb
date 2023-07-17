@@ -1,20 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag 'organisations' %>
 
-<h1>Organisations</h1>
-<% @organisations.each do |organisation| %>
-  <p>
-    <%= organisation.name %>
-    <%= button_to 'Join', join_organisation_path(organisation), method: :put %>
-  </p>
-<% end %>
-
-<div id="organisations">
-  <% @organisations.each do |organisation| %>
-    <%= render organisation %>
-    <p>
-      <%= link_to "Show this organisation", organisation %>
-    </p>
-  <% end %>
+<div class="welcomeUser">
+  <h3>Welcome, <%= current_user.name %>!</h3>
 </div>
 
-<%= link_to "New organisation", new_organisation_path %>
+<% if @organisations.count > 0 %> 
+  <h1>Your Organisations</h1>
+  <% @organisations.each do |organisation| %>
+    <div class="orgRows"> 
+      <div class="orgName"><p><%= organisation.name %></p></div>
+      <%= link_to 'Edit', edit_organisation_path(organisation) %>
+    </div> 
+  <% end %>
+<% else %>
+  <p>You don't belong to any organisations yet.</p>
+<% end %>
+
+<h1>All Organisations</h1>
+<% @all_organisations.each do |organisation| %>
+  <div class="orgRows"> 
+    <div class="orgName"><p><%= organisation.name %></p></div>
+    <div class="joinBtn"><%= button_to 'Join', join_organisation_path(organisation), method: :post unless @organisations.include?(organisation) %></div>
+  </div>  
+<% end %>
+
+<h1>Create New Organisation</h1>
+<%= form_for @new_organisation, url: organisations_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :hourly_rate %>
+  <%= f.number_field :hourly_rate %>
+
+  <%= f.submit "Create" %>
+<% end %>
