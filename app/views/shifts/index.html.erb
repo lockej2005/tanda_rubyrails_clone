@@ -6,9 +6,11 @@
   <% @shifts.each do |shift| %>
     <%= render shift %>
     <p>
-      <%= link_to "Show this shift", shift %>
+    <%= link_to "Show this shift", organisation_shift_path(@organisation, shift) %>
     </p>
   <% end %>
 </div>
+<%= link_to 'Back to Home', organisations_path %>
 
-<%= link_to "New shift", new_shift_path %>
+<%= link_to "New Shift", new_organisation_shift_path(@organisation) %>
+

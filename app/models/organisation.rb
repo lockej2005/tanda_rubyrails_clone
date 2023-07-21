@@ -1,4 +1,10 @@
-class Organisation < ApplicationRecord
-    has_and_belongs_to_many :users
+  # app/models/organisation.rb
+  class Organisation < ApplicationRecord
+    has_many :users
+    has_many :shifts
   end
   
+class Shift < ApplicationRecord
+  belongs_to :organisation
+  # Other code...
+end

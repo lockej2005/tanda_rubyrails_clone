@@ -6,6 +6,13 @@ class OrganisationsController < ApplicationController
     @all_organisations = Organisation.all
     @new_organisation = Organisation.new
   end
+  def shifts
+  @organisation = Organisation.find(params[:id])
+  @shifts = @organisation.shifts.order(created_at: :desc)
+end
+def edit
+  @organisation = Organisation.find(params[:id])
+end
 
   def create
     @organisation = Organisation.new(organisation_params)
@@ -38,4 +45,6 @@ class OrganisationsController < ApplicationController
     def organisation_params
       params.require(:organisation).permit(:name, :hourly_rate)
     end
+    # Only allow a list of trusted parameters through.
+
 end

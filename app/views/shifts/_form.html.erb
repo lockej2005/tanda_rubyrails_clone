@@ -1,37 +1,38 @@
-<%= form_with(model: shift) do |form| %>
+<%= form_with(model: [@organisation, @shift], local: true) do |form| %>
+
   <% if shift.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation">
       <h2><%= pluralize(shift.errors.count, "error") %> prohibited this shift from being saved:</h2>
 
       <ul>
-        <% shift.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% shift.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :start, style: "display: block" %>
+  <div class="field">
+    <%= form.label :start %>
     <%= form.datetime_field :start %>
   </div>
 
-  <div>
-    <%= form.label :finish, style: "display: block" %>
+  <div class="field">
+    <%= form.label :finish %>
     <%= form.datetime_field :finish %>
   </div>
 
-  <div>
-    <%= form.label :break_length, style: "display: block" %>
+  <div class="field">
+    <%= form.label :break_length %>
     <%= form.number_field :break_length %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
   </div>
 
-  <div>
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

@@ -7,9 +7,10 @@
 <% if @organisations.count > 0 %> 
   <h1>Your Organisations</h1>
   <% @organisations.each do |organisation| %>
-    <div class="orgRows"> 
+    <div class="orgRows">
       <div class="orgName"><p><%= organisation.name %></p></div>
       <%= link_to 'Edit', edit_organisation_path(organisation) %>
+      <%= link_to "Show shifts", organisation_shifts_path(organisation) %>  <!-- Here is the change -->
     </div> 
   <% end %>
 <% else %>
@@ -21,6 +22,8 @@
   <div class="orgRows"> 
     <div class="orgName"><p><%= organisation.name %></p></div>
     <div class="joinBtn"><%= button_to 'Join', join_organisation_path(organisation), method: :post unless @organisations.include?(organisation) %></div>
+    <%= link_to "New shift", new_organisation_shift_path(organisation) %>
+    
   </div>  
 <% end %>
 

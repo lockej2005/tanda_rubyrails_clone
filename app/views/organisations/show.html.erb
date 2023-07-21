@@ -2,6 +2,30 @@
 
 <%= render @organisation %>
 
+<!-- Start of Shifts Table -->
+<table>
+  <thead>
+    <tr>
+      <th>Start Time</th>
+      <th>Finish Time</th>
+      <th>Break Length</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @organisation.shifts.each do |shift| %>
+      <tr>
+        <td><%= shift.start %></td>
+        <td><%= shift.finish %></td>
+        <td><%= shift.break_length %></td>
+        <td><%= shift.user_id %></td> <!-- Or if the User model exists, you could use 'shift.user.name' or another user attribute -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!-- End of Shifts Table -->
+
 <div>
   <%= link_to "Edit this organisation", edit_organisation_path(@organisation) %> |
   <%= link_to "Back to organisations", organisations_path %>

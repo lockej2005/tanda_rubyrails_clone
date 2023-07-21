@@ -1,0 +1,26 @@
+<h1>Shifts for <%= @organisation.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start Time</th>
+      <th>Finish Time</th>
+      <th>Break</th>
+      <th>Hours Worked</th>
+      <th>Shift Cost</th>
+      <th>Employee Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shifts.each do |shift| %>
+      <tr>
+        <td><%= shift.start_time %></td>
+        <td><%= shift.finish_time %></td>
+        <td><%= shift.break %></td>
+        <td><%= shift.hours_worked %></td>
+        <td><%= shift.shift_cost %></td>
+        <td><%= shift.employee.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

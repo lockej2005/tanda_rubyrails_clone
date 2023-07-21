@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_042150) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_17_064317) do
   create_table "organisations", force: :cascade do |t|
     t.string "name"
     t.decimal "hourly_rate"
@@ -30,6 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_042150) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organisation_id", null: false
+    t.index ["organisation_id"], name: "index_shifts_on_organisation_id"
     t.index ["user_id"], name: "index_shifts_on_user_id"
   end
 
@@ -43,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_042150) do
     t.index ["organisation_id"], name: "index_users_on_organisation_id"
   end
 
+  add_foreign_key "shifts", "organisations"
   add_foreign_key "shifts", "users"
   add_foreign_key "users", "organisations"
 end

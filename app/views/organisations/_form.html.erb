@@ -1,4 +1,5 @@
-<%= form_with(model: organisation) do |form| %>
+<%= form_with(model: @organisation, local: true) do |form| %>
+
   <% if organisation.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
