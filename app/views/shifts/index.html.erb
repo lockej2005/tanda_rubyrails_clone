@@ -2,15 +2,33 @@
 
 <h1>Shifts</h1>
 
-<div id="shifts">
-  <% @shifts.each do |shift| %>
-    <%= render shift %>
-    <p>
-    <%= link_to "Show this shift", organisation_shift_path(@organisation, shift) %>
-    </p>
-  <% end %>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Break Length (Minutes)</th>
+      <th>Total Worked Hours</th>
+      <th>Total Pay</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shifts.each do |shift| %>
+      <tr>
+        <td><%= shift.start %></td>
+        <td><%= shift.finish %></td>
+        <td><%= shift.break_length %></td>
+        <td><%= shift.total_worked_hours.round(2) %></td>
+        <td><%= number_to_currency(shift.total_pay.round(2)) %></td>
+        <td>
+          <%= link_to "Show", organisation_shift_path(@organisation, shift) %>
+          <!-- You can add more actions (edit, destroy) here as needed -->
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Back to Home', organisations_path %>
-
 <%= link_to "New Shift", new_organisation_shift_path(@organisation) %>
-
